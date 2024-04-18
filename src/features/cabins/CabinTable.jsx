@@ -4,12 +4,15 @@ import CabinRow from './CabinRow.jsx';
 import { useCabins } from './useCabins.js';
 import Table from '../../ui/Table.jsx';
 import Menus from '../../ui/Menus.jsx';
+import Empty from '../../ui/Empty.jsx';
 
 function CabinTable() {
 	const { isLoading, cabins } = useCabins();
 	const [searchParams] = useSearchParams();
 
 	if (isLoading) return <Spinner />;
+
+	if (!cabins.length) return <Empty resourceName="cabins" />;
 
 	const filterValue = searchParams.get('discount') || 'all';
 	let filteredCabins;
