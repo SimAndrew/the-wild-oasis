@@ -6,6 +6,7 @@ import { formatCurrency } from '../../utils/helpers';
 import { formatDistanceFromNow } from '../../utils/helpers';
 import { format, isToday } from 'date-fns';
 import { HiEye } from 'react-icons/hi';
+import { HiArrowDownOnSquare } from 'react-icons/hi2';
 import styled from 'styled-components';
 
 const Cabin = styled.div`
@@ -92,6 +93,15 @@ function BookingRow({
 					>
 						See details
 					</Menus.Button>
+
+					{status === 'unconfirmed' && (
+						<Menus.Button
+							icon={<HiArrowDownOnSquare />}
+							onClick={() => navigate(`/checkin/${bookingId}`)}
+						>
+							Check in
+						</Menus.Button>
+					)}
 				</Menus.List>
 			</Menus.Menu>
 		</Table.Row>
