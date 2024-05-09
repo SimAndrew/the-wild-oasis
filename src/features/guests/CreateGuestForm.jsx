@@ -14,8 +14,6 @@ const FormSelect = styled(Select)`
 	width: 100%;
 `;
 
-// With NEW modal
-// function CreateGuest({ onSuccessNewGuest, setIsOpenForm }) {
 function CreateGuestForm({ onSuccessNewGuest, closeModal }) {
 	const { isLoading: isLoadingCountries, countries } = useCountries();
 	const { isLoading: isCreating, mutate: createGuest } = useCreateGuest();
@@ -41,13 +39,8 @@ function CreateGuestForm({ onSuccessNewGuest, closeModal }) {
 		createGuest(
 			{ ...data, countryFlag },
 			{
-				// In the mutate function, we can ALSO use the onSuccess handler, just like in useMutation. Both will get called. This one also gets access to the returned value of the mutation (new guest in this case)
-				// This is how we can get access to the newly created object. Here we set it into state, because we want to display it in the UI
 				onSuccess: (data) => {
-					// We might want to reuse this form in another place, and then onSuccessNewGuest will not exist
 					onSuccessNewGuest?.(data);
-
-					// If this component is used OUTSIDE the Modal Context, this will return undefined, so we need to test for this. Instead of if
 					closeModal?.();
 				},
 			},
@@ -73,7 +66,6 @@ function CreateGuestForm({ onSuccessNewGuest, closeModal }) {
 					{...register('email', {
 						required: 'Email address is required',
 						pattern: {
-							// google: email regex JavaScript
 							value: /\S+@\S+\.\S+/,
 							message: 'Please specify a valid email',
 						},

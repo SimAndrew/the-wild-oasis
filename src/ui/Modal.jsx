@@ -47,8 +47,6 @@ const Button = styled.button`
 		width: 2.4rem;
 		height: 2.4rem;
 
-		/* fill: var(--color-grey-500);
-    stroke: var(--color-grey-500); */
 		color: var(--color-grey-500);
 	}
 `;

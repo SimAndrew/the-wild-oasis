@@ -42,7 +42,6 @@ function GuestList({ onClick }) {
 					<GuestListItem
 						key={guest.id}
 						guest={guest}
-						// For case where GuestList was used without the onClick function
 						onClick={onClick ? onClick : () => {}}
 					/>
 				))}
